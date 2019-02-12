@@ -16,6 +16,7 @@ export class AppComponent {
   login() {
     this.matrix.login(this.user).subscribe((message) => {
       this.messages.push(message);
+      // Hello there
     });
   }
 
