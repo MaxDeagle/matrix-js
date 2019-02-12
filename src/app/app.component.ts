@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatrixService } from './matrix.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  user: string;
+  message: string;
+  messages = [];
+
+  constructor(private matrix: MatrixService) {}
+
+  login() {
+    this.matrix.login(this.user).subscribe((message) => {
+      this.messages.push(message);
+    });
+  }
+
+  sendMessage() {
+    const content = {
+      'body': this.message,
+      'msgtype': 'm.text'
+    }
+    this.matrix.sendMessage(content);
+  }
+
 }
