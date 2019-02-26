@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
-import sdk from 'matrix-js-sdk';
+import sdk from 'matrix-js-sdk'
 import crypto from 'crypto-js'
 import { Subject, Observable } from 'rxjs';
+import { MatrixClient } from 'matrix-types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MatrixService {
 
-  client: any;
+  client: MatrixClient;
   roomId: string;
   api = 'https://matrix-prod.tech-stm.net';
   state: any;
   accessToken: string;
   userId: string;
+
+  matrixSDK: MatrixSDK = sdk;
 
   messages: Subject<string> = new Subject<string>();
 
